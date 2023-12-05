@@ -10,4 +10,5 @@ public interface StudentDAO {
     Student updateStudent(Student student);
 
     void removeStudent(int id);
+    void close();
 }

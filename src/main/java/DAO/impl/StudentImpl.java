@@ -8,7 +8,14 @@ import jakarta.persistence.EntityManager;
 
 public class StudentImpl extends Entities implements StudentDAO {
 
-    private final EntityManager entity = Entities.getEntities();
+    private  EntityManager entity = Entities.getEntities("student_pu");
+
+    public StudentImpl(String persistence) {
+    entity=getEntities(persistence);
+    }
+
+    public StudentImpl() {
+    }
 
     @Override
     public Student findStudentById(int id) {
@@ -38,5 +45,8 @@ public class StudentImpl extends Entities implements StudentDAO {
         entity.getTransaction().begin();
         entity.remove(findStudentById(id));
         entity.getTransaction().commit();
+    }
+    public void close(){
+        entity.close();
     }
 }
