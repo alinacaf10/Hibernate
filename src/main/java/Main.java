@@ -1,8 +1,10 @@
 import DAO.impl.StudentImpl;
+import bean.Student;
 
 public class Main {
     public static void main(String[] args) {
-        StudentImpl student=new StudentImpl();
-        student.findStudent();
+        StudentImpl studentimpl=new StudentImpl();
+        studentimpl.findStudentById(1);
+
     }
 }

@@ -3,7 +3,7 @@ package DAO;
 import bean.Student;
 
 public interface StudentDAO {
-    public  Student findStudent();
+    public  Student findStudentById(int id);
     public boolean createStudent(Student student);
     public Student updateStudent();
 }
