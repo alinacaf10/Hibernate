@@ -36,11 +36,10 @@ public class StudentImpl extends Entities implements StudentDAO {
     }
 
     @Override
-    public Student updateStudent(Student student) {
-        EntityTransaction entityTransaction = entity.getTransaction();
-        entityTransaction.begin();
-        Student student1 = findStudentById(student.getId().intValue());
-        entityTransaction.commit();
-        return student1;
+    public Student updateStudent(Student student, String name, String surname) {
+        student.setName(name);
+        student.setSurname(surname);
+        return student;
+
     }
 }

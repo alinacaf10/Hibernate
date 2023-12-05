@@ -1,30 +1,16 @@
-import DAO.abstraction.Entities;
 import DAO.impl.StudentImpl;
 import bean.Student;
-import jakarta.persistence.EntityTransaction;
 
 public class Main {
     public static void main(String[] args) {
-//        StudentImpl studentimpl = new StudentImpl();
-//
-//        Student student = studentimpl.findStudentById(1);
-//        student.setSurname("Nacafov");
-//        student.setName("Eli");
-//
-//        studentimpl.updateStudent(student);
+        StudentImpl studentimpl = new StudentImpl();
 
-        EntityTransaction entityTransaction = Entities.getEntities().getTransaction();
-        entityTransaction.begin();
-        Student student = Entities.getEntities().find(Student.class, 1);
+        Student student=studentimpl.findStudentById(1);
+        System.out.println("Before: "+studentimpl.findStudentById(1));
 
-        entityTransaction.commit();
+        studentimpl.updateStudent(student,"Ali","Ilhamoglu");
 
-        student.setSurname("Nacafov");
-        student.setName("Eli");
-        Entities.getEntities().persist(student);
-
-        System.out.println( Entities.getEntities().find(Student.class, 1));
-
+        System.out.println(studentimpl.findStudentById(1));
 
     }
 }
