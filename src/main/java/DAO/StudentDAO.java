@@ -7,5 +7,5 @@ public interface StudentDAO {
 
     boolean createStudent(Student student);
 
-    Student updateStudent();
+    Student updateStudent(Student student);
 }
