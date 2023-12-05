@@ -4,49 +4,39 @@ import DAO.StudentDAO;
 import DAO.abstraction.Entities;
 import bean.Student;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
+
 
 public class StudentImpl extends Entities implements StudentDAO {
+
     private final EntityManager entity = Entities.getEntities();
 
     @Override
     public Student findStudentById(int id) {
-        Student student = entity.find(Student.class, id);
-        EntityTransaction entityTransaction = entity.getTransaction();
-        entityTransaction.begin();
-
-        entityTransaction.commit();
-        return student;
+        return entity.find(Student.class, id);
     }
 
     @Override
-    public boolean createStudent(Student student) {
-        EntityTransaction entityTransaction = entity.getTransaction();
-
-        entityTransaction.begin();
-
+    public Student createStudent(Student student) {
+        entity.getTransaction().begin();
         entity.persist(student);
-
-        entityTransaction.commit();
-
-        entity.close();
-
-
-        return true;
-    }
-
-    @Override
-    public Student updateStudent(Student student, String name, String surname) {
-        student.setName(name);
-        student.setSurname(surname);
+        entity.getTransaction().commit();
         return student;
-
     }
 
     @Override
-    public boolean removeStudent(int id) {
-        entity.remove(findStudentById(id));
+    public Student updateStudent(Student student) {
+        Student studentUpdated = findStudentById(student.getId().intValue());
+        entity.getTransaction().begin();
+        studentUpdated.setName(student.getName());
+        studentUpdated.setSurname(student.getSurname());
+        entity.getTransaction().commit();
+        return studentUpdated;
+    }
 
-        return false;
+    @Override
+    public void removeStudent(int id) {
+        entity.getTransaction().begin();
+        entity.remove(findStudentById(id));
+        entity.getTransaction().commit();
     }
 }
