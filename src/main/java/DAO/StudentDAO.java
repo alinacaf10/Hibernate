@@ -7,5 +7,7 @@ public interface StudentDAO {
 
     boolean createStudent(Student student);
 
-    Student updateStudent(Student student,String name,String surname);
+    Student updateStudent(Student student, String name, String surname);
+
+    boolean removeStudent(int id);
 }

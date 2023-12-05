@@ -42,4 +42,11 @@ public class StudentImpl extends Entities implements StudentDAO {
         return student;
 
     }
+
+    @Override
+    public boolean removeStudent(int id) {
+        entity.remove(findStudentById(id));
+
+        return false;
+    }
 }

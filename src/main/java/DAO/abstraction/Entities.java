@@ -5,11 +5,19 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public abstract class Entities {
-    private static String PERSISTENCE="student_pu";
-    public static EntityManager getEntities(){
+    private static final String PERSISTENCE = "student_pu";
+    private static EntityManagerFactory entityManagerFactory;
+    private static EntityManager entityManager;
 
-        EntityManagerFactory entityManagerFactory= Persistence.createEntityManagerFactory(PERSISTENCE);
-        EntityManager entityManager=entityManagerFactory.createEntityManager();
+    public static EntityManager getEntities() {
+
+        entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE);
+        entityManager = entityManagerFactory.createEntityManager();
         return entityManager;
+    }
+
+    public static void closeEntity() {
+        entityManagerFactory.close();
+        entityManager.close();
     }
 }
