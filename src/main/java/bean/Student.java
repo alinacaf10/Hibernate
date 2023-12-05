@@ -9,10 +9,10 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name",nullable = false,length = 100)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name ="surname", nullable = false,length = 100)
+    @Column(name = "surname", nullable = false, length = 100)
     private String surname;
 
     public Student() {
