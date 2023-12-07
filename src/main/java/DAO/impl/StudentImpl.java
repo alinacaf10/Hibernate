@@ -54,6 +54,21 @@ public class StudentImpl extends Entities implements StudentDAO {
         query.setParameter("id",id);
         return (Student) query.getSingleResult();
     }
+    public Student updateById(String name,Long id){
+        entity.getTransaction().begin();
+        Query query=entity.createQuery("Update Student set name = '"+name+"' where id = " + id);
+        query.executeUpdate();
+        entity.getTransaction().commit();
+
+        return findById(id);
+    }
+    public void removeStudent(Long id){
+        entity.getTransaction().begin();
+        Query query=entity.createQuery("delete from Student where id = "+id);
+        query.executeUpdate();
+        entity.getTransaction().commit();
+
+    }
     public void close(){
         entity.close();
     }
