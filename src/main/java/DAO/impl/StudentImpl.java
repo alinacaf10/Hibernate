@@ -50,7 +50,7 @@ public class StudentImpl extends Entities implements StudentDAO {
     }
 
     public Student findById(Long id){
-        Query query=entity.createQuery("find name by id");
+        Query query=entity.createNamedQuery("find student by id");
         query.setParameter("id",id);
         return (Student) query.getSingleResult();
     }
