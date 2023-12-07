@@ -4,6 +4,9 @@ import DAO.StudentDAO;
 import DAO.abstraction.Entities;
 import bean.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+
+import java.util.List;
 
 
 public class StudentImpl extends Entities implements StudentDAO {
@@ -45,6 +48,13 @@ public class StudentImpl extends Entities implements StudentDAO {
         entity.getTransaction().begin();
         entity.remove(findStudentById(id));
         entity.getTransaction().commit();
+    }
+
+    public List<String> findSurnames(){
+    entity.getTransaction().begin();
+    Query query =   entity.createQuery("select surname from Student");
+    entity.getTransaction().commit();
+    return query.getResultList();
     }
     public void close(){
         entity.close();
