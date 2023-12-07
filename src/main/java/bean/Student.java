@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "student")
+@NamedQuery(name="find name by id", query = "select s from Student s where s.id = :id")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

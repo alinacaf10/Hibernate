@@ -6,7 +6,6 @@ import bean.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 
-import java.util.List;
 
 
 public class StudentImpl extends Entities implements StudentDAO {
@@ -50,11 +49,10 @@ public class StudentImpl extends Entities implements StudentDAO {
         entity.getTransaction().commit();
     }
 
-    public List<String> findSurnames(){
-    entity.getTransaction().begin();
-    Query query =   entity.createQuery("select surname from Student");
-    entity.getTransaction().commit();
-    return query.getResultList();
+    public Student findById(Long id){
+        Query query=entity.createQuery("find name by id");
+        query.setParameter("id",id);
+        return (Student) query.getSingleResult();
     }
     public void close(){
         entity.close();
