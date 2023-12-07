@@ -2,6 +2,7 @@ package DAO.impl;
 
 import DAO.StudentDAO;
 import DAO.abstraction.Entities;
+import bean.School;
 import bean.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -68,6 +69,13 @@ public class StudentImpl extends Entities implements StudentDAO {
         query.executeUpdate();
         entity.getTransaction().commit();
 
+    }
+    public Student addSchool(Long id, School school){
+        entity.getTransaction().begin();
+        Student student=findById(id);
+        student.setSchool(school);
+        entity.getTransaction().commit();
+        return student;
     }
     public void close(){
         entity.close();

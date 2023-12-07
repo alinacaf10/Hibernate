@@ -6,6 +6,7 @@
     <persistence-unit name="student_pu">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>bean.Student</class>
+        <class>bean.School</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db"/>

@@ -15,6 +15,16 @@ public class Student {
 
     @Column(name = "surname", nullable = false, length = 100)
     private String surname;
+    @OneToOne
+    private School school;
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
 
     public Student() {
     }
@@ -55,6 +65,7 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", school=" + school +
                 '}';
     }
 }
